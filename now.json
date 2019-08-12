@@ -1,0 +1,28 @@
+{
+  "version" : 2,
+  "name" : "platzi-courses-node",
+  "builds" : [
+    {
+      "src" : "index.js",
+      "use" : "@now/node-server"
+    }
+  ],
+  "routes" : [
+    {
+      "headers" : {
+        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Methods" : "GET,POST,PUT,DELETE",
+        "Access-Control-Allow-Headers": "X-Request-With,Content-Type,Accept"
+      },
+      "src" : "/.*",
+      "dest" : "index.js"
+    }
+  ],
+  "env" : {
+    "DB_NAME" : "@db-name-platzi-courses-node",
+    "DB_USER" : "@db-user-platzi-courses-node",
+    "DB_PASSWORD" : "@db-password-platzi-courses-node",
+    "DB_HOST" : "@db-host-platzi-courses-node",
+    "DB_PORT" : "@db-port-platzi-courses-node"
+  }
+}
