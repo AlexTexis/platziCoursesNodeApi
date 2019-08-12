@@ -13,6 +13,7 @@ import routeAlumns from './src/routes/alumns'
 import routeCourses from './src/routes/courses'
 import routeClasses from './src/routes/classes'
 
+app.get('/',(req,res) => res.json({ message : 'welcome to api platzi courses'}))
 app.use('/alumns',routeAlumns)
 app.use('/courses',routeCourses)
 app.use('/classes',routeClasses)
