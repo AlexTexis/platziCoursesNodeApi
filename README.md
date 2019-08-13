@@ -1,7 +1,14 @@
-<<<<<<< HEAD
-# platziCoursesApiNode
-Solution of challenge platzi. Api developed with node and express
-=======
 # platziCoursesNodeApi
-Solution of challenge platzi
->>>>>>> cf0834d9fd8e6668ae2e17c93777b24f5fdcf25e
+
+# How does it work ?
+
+1 - Run **npm install** to install project dependencies
+2 - Configure environment variables
+
+## Scripts
+* run in mode development
+ > npm run dev
+
+* run in mode production
+> npm run prod
+ 
