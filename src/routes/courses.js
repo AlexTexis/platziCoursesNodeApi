@@ -2,8 +2,13 @@ import { Router  } from 'express'
 const route = Router()
 import { Courses } from '../services/courses'
 import { schema_validation } from '../middlewares/data_validation'
-import { schemaId,schemaCourse,schemaCourseUpdate,schemaIdCourseClass,schemaIdCourseStudent,
-  schemaIdsDeleteClass,schemaIdsDeleteStudent
+import { 
+  schemaId,schemaCourse,
+  schemaCourseUpdate,
+  schemaIdCourseClass,
+  schemaIdCourseStudent,
+  schemaIdsDeleteClass,
+  schemaIdsDeleteStudent
  } from '../schemas/index'
 
 route.get('/',async (req,res,next) => {
@@ -95,18 +100,18 @@ route.delete('/:id',schema_validation(schemaId,'params'),async (req,res,next) =>
 
 // CLASS ENDPOINTS
 route.post('/:id/class',schema_validation(schemaId,'params'),schema_validation(schemaIdCourseClass,'body'),async (req,res,next) => {
-  let response 
+  let classAdd 
   const { body } = req
   const { id } = req.params
   try 
   {
-    response = await new Courses().addClass({
+    classAdd = await new Courses().addClass({
       idRef:id,
       input : body
     })
 
     res.status(200).json({
-      data : response
+      data : classAdd
     })
   }
   catch(e)
@@ -116,17 +121,17 @@ route.post('/:id/class',schema_validation(schemaId,'params'),schema_validation(s
 })
 
 route.delete('/:id/class/:idClass',schema_validation(schemaIdsDeleteClass,'params'),async (req,res,next) => {
-  let response 
+  let classRemoved 
   const { id,idClass } = req.params
   try 
   {
-    response = await new Courses().removeClass({
+    classRemoved = await new Courses().removeClass({
       idRef:id,
       idClass
     })
 
     res.status(200).json({
-      data : response
+      data : classRemoved
     })
   }
   catch(e)
@@ -138,18 +143,18 @@ route.delete('/:id/class/:idClass',schema_validation(schemaIdsDeleteClass,'param
 
 // STUDENTS ENDPOINTS
 route.post('/:id/students',schema_validation(schemaId,'params'),schema_validation(schemaIdCourseStudent,'body'),async (req,res,next) => {
-  let response 
+  let studentAdd 
   const { body } = req
   const { id } = req.params
   try 
   {
-    response = await new Courses().addStudent({
+    studentAdd = await new Courses().addStudent({
       idRef:id,
       idStudent : body
     })
 
     res.status(200).json({
-      data : response
+      data : studentAdd
     })
   }
   catch(e)
@@ -159,17 +164,17 @@ route.post('/:id/students',schema_validation(schemaId,'params'),schema_validatio
 })
 
 route.delete('/:id/students/:idStudent',schema_validation(schemaIdsDeleteStudent,'params'),async (req,res,next) => {
-  let response 
+  let studentRemoved 
   const { id,idStudent } = req.params
   try 
   {
-    response = await new Courses().removeStudent({
+    studentRemoved = await new Courses().removeStudent({
       idRef:id,
       idStudent
     })
 
     res.status(200).json({
-      data : response
+      data : studentRemoved
     })
   }
   catch(e)

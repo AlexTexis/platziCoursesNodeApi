@@ -29,29 +29,27 @@ export class Classes
 
   async create(input) 
   {
-    let teacher
+    let classCreated
 
-    teacher = await CREATE({
+    classCreated = await CREATE({
       collection : this.collection,
       input
     })
 
-
-    return teacher 
+    return classCreated 
   }
 
   async delete(id) 
   {
-    let teacher
-    const query = {_id : ObjectId(id) }
+    let classRemoved
+    const filter = {_id : ObjectId(id) }
 
-    teacher = await DELETE({
+    classRemoved = await DELETE({
       collection : this.collection,
-      query
+      filter
     })
 
-
-    return teacher 
+    return classRemoved 
   }
   
 

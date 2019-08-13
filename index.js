@@ -1,5 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import helmet from 'helmet'
 import cors from 'cors'
 
 const app = express()
@@ -7,14 +8,15 @@ const app = express()
 //middlewares
 app.use(bodyParser.json())
 app.use(cors())
+app.use(helmet())
 
 //routes
-import routeAlumns from './src/routes/alumns'
+import routeAlumns from './src/routes/students'
 import routeCourses from './src/routes/courses'
 import routeClasses from './src/routes/classes'
 
-app.get('/',(req,res) => res.json({ message : 'welcome to api platzi courses'}))
-app.use('/alumns',routeAlumns)
+app.get('/',(req,res) => res.json({ message : 'welcome to api platzi courses with node js'}))
+app.use('/students',routeAlumns)
 app.use('/courses',routeCourses)
 app.use('/classes',routeClasses)
 
@@ -36,4 +38,4 @@ import {
 
 //server init
 const PORT = process.env.PORT || 8000
-app.listen(PORT,() => console.log(`server listen http://localhost:${PORT}`))
+app.listen(PORT,() => console.log(`Server listen on :${PORT}`))

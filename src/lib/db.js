@@ -74,12 +74,12 @@ export const UPDATE =  async({collection,query={},filter={}}={}) => {
   return element.value
 }
 
-export const DELETE =  async({collection,query={}}={}) => {
+export const DELETE =  async({collection,filter={}}={}) => {
   let element
   let db
 
   db = await setupConnect()
-  element = await db.collection(collection).findOneAndDelete(query)
+  element = await db.collection(collection).findOneAndDelete(filter)
 
   return element.value._id
 }

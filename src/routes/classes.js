@@ -25,18 +25,18 @@ route.get('/',async (req,res,next) => {
 route.post('/',schema_validation(schemaClass),async (req,res,next) => {
   let { body } = req
   let classAdded
- try 
- {  
-  classAdded = await new Classes().create(body)
-  res.status(201).json({
-    data : classAdded
-    
-  })
- }
- catch(e)
- {
-   next(e)
- }
+  try 
+  {  
+    classAdded = await new Classes().create(body)
+    res.status(201).json({
+      data : classAdded
+      
+    })
+  }
+  catch(e)
+  {
+    next(e)
+  }
 })
 
 

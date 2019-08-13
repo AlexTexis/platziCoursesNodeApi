@@ -11,9 +11,9 @@ export class Courses
   async getAll() 
   {
     let courses 
-      courses = await GET_ALL({ 
-        collection : this.collection,
-      })
+    courses = await GET_ALL({ 
+      collection : this.collection,
+    })
 
     return courses || []
   }
@@ -33,42 +33,45 @@ export class Courses
 
   async create(input) 
   {
-    let course
+    let courseCreated
 
-    course = await CREATE({
+    courseCreated = await CREATE({
       collection : this.collection,
       input
     })
 
-    return course 
+    return courseCreated 
   }
 
   async delete(id) 
   {
-    let course
-    const query = {_id : ObjectId(id) }
+    let courseDeleted
+    
+    const filter = {_id : ObjectId(id) }
 
-    course = await DELETE({
+    courseDeleted = await DELETE({
       collection : this.collection,
-      query
+      filter
     })
 
-    return course 
+    return courseDeleted 
   }
 
   async update({id,input}={}) 
   {
  
-    let course
+    let courseUpdated
+
     const query = { $set : input } 
     const filter = { _id: ObjectId(id) } 
 
-    course = await UPDATE({
+    courseUpdated = await UPDATE({
       collection : this.collection,
       query,
       filter
     })
-    return course 
+    
+    return courseUpdated 
   }
 
   
@@ -76,7 +79,6 @@ export class Courses
   {
     let classAdd
     let response_projection
-
 
     const filter_class = { _id : ObjectId(input._id) } 
     const proyection ={ _id : 1,name:1 }
@@ -123,14 +125,14 @@ export class Courses
 
   async addStudent({idRef,idStudent}={}) 
   {
-    let response
+    let studentAdd
     let response_proyection
 
     const filter_student = { _id :  ObjectId(idStudent._id) }
     const proyection  = { projection : { _id : 1,name :1,surnames :1 } }
     
     response_proyection = await GET_ONE_WITH_PROYECTION({
-      collection : 'alumns',
+      collection : 'students',
       filter : filter_student,
       proyection
     })
@@ -139,15 +141,14 @@ export class Courses
     const filter = { _id : ObjectId(idRef) }
     const query = { $addToSet : { alumns : response_proyection} }
 
-    response = await UPDATE({
+    studentAdd = await UPDATE({
       collection : this.collection,
       query,
       filter
     })
     
-    // return response 
     return {
-      _id : response['_id'],
+      _id : studentAdd['_id'],
       saved : response_proyection 
     }
   }
@@ -165,7 +166,6 @@ export class Courses
       filter
     })
 
-    // return response
     return {
       _id : response['_id'],
       removed : idStudent
