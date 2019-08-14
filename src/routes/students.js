@@ -23,7 +23,9 @@ route.get('/',async (req,res,next) => {
   }
 })
 
-route.get('/:id',schema_validation(schemaId,'params'),async (req,res,next) => {
+route.get('/:id',
+schema_validation(schemaId,'params'),
+async (req,res,next) => {
   const { id } = req.params
   let student
   try 
@@ -39,7 +41,9 @@ route.get('/:id',schema_validation(schemaId,'params'),async (req,res,next) => {
   }
 })
 
-route.post('/',schema_validation(schemaStudent,'body'),async (req,res,next) => {
+route.post('/',
+schema_validation(schemaStudent,'body'),
+async (req,res,next) => {
   let { body } = req
   let newStudent
  try 
@@ -55,7 +59,10 @@ route.post('/',schema_validation(schemaStudent,'body'),async (req,res,next) => {
  }
 })
 
-route.put('/:id',schema_validation(schemaId,'params'),schema_validation(schemaStudentUpdate,'body'),async (req,res,next) => {
+route.put('/:id',
+schema_validation(schemaId,'params'),
+schema_validation(schemaStudentUpdate,'body'),
+async (req,res,next) => {
   let updatedStudent 
   const { body } = req
   const { id } = req.params
@@ -76,7 +83,9 @@ route.put('/:id',schema_validation(schemaId,'params'),schema_validation(schemaSt
   }
 })
 
-route.delete('/:id',schema_validation(schemaId,'params'),async (req,res,next) => {
+route.delete('/:id',
+schema_validation(schemaId,'params'),
+async (req,res,next) => {
   let studentRemoved 
   const { id } = req.params
   try 
