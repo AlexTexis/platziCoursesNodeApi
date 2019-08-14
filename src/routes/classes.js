@@ -22,7 +22,9 @@ route.get('/',async (req,res,next) => {
   }
 })
 
-route.post('/',schema_validation(schemaClass),async (req,res,next) => {
+route.post('/',
+schema_validation(schemaClass),
+async (req,res,next) => {
   let { body } = req
   let classAdded
   try 
@@ -40,7 +42,9 @@ route.post('/',schema_validation(schemaClass),async (req,res,next) => {
 })
 
 
-route.delete('/:id',schema_validation(schemaId,'params'),async (req,res,next) => {
+route.delete('/:id',
+schema_validation(schemaId,'params'),
+async (req,res,next) => {
   let classRemoved
   const { id } = req.params
   try 

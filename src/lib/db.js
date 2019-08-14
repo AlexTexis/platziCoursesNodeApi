@@ -25,7 +25,7 @@ const setupConnect = async () => {
   return INSTANCE_CONNECTION
 }
 
-export const GET_ALL =  async({collection,filter={}}={}) => {
+export const GET_ALL =  async({collection,filter={}}) => {
   let elements
   let db
 
@@ -36,7 +36,7 @@ export const GET_ALL =  async({collection,filter={}}={}) => {
 }
 
 
-export const GET_ONE =  async({collection,filter={}}={}) => {
+export const GET_ONE =  async({collection,filter={}}) => {
   let element
   let db
 
@@ -46,7 +46,7 @@ export const GET_ONE =  async({collection,filter={}}={}) => {
   return element
 }
 
-export const GET_ONE_WITH_PROYECTION =  async({collection,filter,proyection}={}) => {
+export const GET_ONE_WITH_PROYECTION =  async({collection,filter,proyection}) => {
   let element
   let db
   db = await setupConnect()
@@ -55,7 +55,7 @@ export const GET_ONE_WITH_PROYECTION =  async({collection,filter,proyection}={})
   return element
 }
 
-export const CREATE =  async({collection,input={}}={}) => {
+export const CREATE =  async({collection,input={}}) => {
   let element
   let db
 
@@ -65,7 +65,7 @@ export const CREATE =  async({collection,input={}}={}) => {
   return element.ops[0]
 }
 
-export const UPDATE =  async({collection,query={},filter={}}={}) => {
+export const UPDATE =  async({collection,query={},filter={}}) => {
   let element
   let db
 
@@ -74,7 +74,7 @@ export const UPDATE =  async({collection,query={},filter={}}={}) => {
   return element.value
 }
 
-export const DELETE =  async({collection,filter={}}={}) => {
+export const DELETE =  async({collection,filter={}}) => {
   let element
   let db
 

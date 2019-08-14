@@ -26,7 +26,9 @@ route.get('/',async (req,res,next) => {
   }
 })
 
-route.get('/:id',schema_validation(schemaId,'params'),async (req,res,next) => {
+route.get('/:id',
+schema_validation(schemaId,'params'),
+async (req,res,next) => {
   const { id } = req.params
   let course
   try 
@@ -42,7 +44,9 @@ route.get('/:id',schema_validation(schemaId,'params'),async (req,res,next) => {
   }
 })
 
-route.post('/',schema_validation(schemaCourse,'body'),async (req,res,next) => {
+route.post('/',
+schema_validation(schemaCourse,'body'),
+async (req,res,next) => {
   let { body } = req
   let newCourse
  try 
@@ -58,7 +62,10 @@ route.post('/',schema_validation(schemaCourse,'body'),async (req,res,next) => {
  }
 })
 
-route.put('/:id',schema_validation(schemaId,'params'),schema_validation(schemaCourseUpdate,'body'),async (req,res,next) => {
+route.put('/:id',
+schema_validation(schemaId,'params'),
+schema_validation(schemaCourseUpdate,'body'),
+async (req,res,next) => {
   let updateCourse 
   const { body } = req
   const { id } = req.params
@@ -79,7 +86,9 @@ route.put('/:id',schema_validation(schemaId,'params'),schema_validation(schemaCo
   }
 })
 
-route.delete('/:id',schema_validation(schemaId,'params'),async (req,res,next) => {
+route.delete('/:id',
+schema_validation(schemaId,'params'),
+async (req,res,next) => {
   let courseRemoved
   const { id } = req.params
   try 
@@ -99,7 +108,10 @@ route.delete('/:id',schema_validation(schemaId,'params'),async (req,res,next) =>
 
 
 // CLASS ENDPOINTS
-route.post('/:id/class',schema_validation(schemaId,'params'),schema_validation(schemaIdCourseClass,'body'),async (req,res,next) => {
+route.post('/:id/class',
+schema_validation(schemaId,'params'),
+schema_validation(schemaIdCourseClass,'body'),
+async (req,res,next) => {
   let classAdd 
   const { body } = req
   const { id } = req.params
@@ -120,7 +132,9 @@ route.post('/:id/class',schema_validation(schemaId,'params'),schema_validation(s
   }
 })
 
-route.delete('/:id/class/:idClass',schema_validation(schemaIdsDeleteClass,'params'),async (req,res,next) => {
+route.delete('/:id/class/:idClass',
+schema_validation(schemaIdsDeleteClass,'params'),
+async (req,res,next) => {
   let classRemoved 
   const { id,idClass } = req.params
   try 
@@ -142,7 +156,10 @@ route.delete('/:id/class/:idClass',schema_validation(schemaIdsDeleteClass,'param
 
 
 // STUDENTS ENDPOINTS
-route.post('/:id/students',schema_validation(schemaId,'params'),schema_validation(schemaIdCourseStudent,'body'),async (req,res,next) => {
+route.post('/:id/students',
+schema_validation(schemaId,'params'),
+schema_validation(schemaIdCourseStudent,'body'),
+async (req,res,next) => {
   let studentAdd 
   const { body } = req
   const { id } = req.params
@@ -163,7 +180,9 @@ route.post('/:id/students',schema_validation(schemaId,'params'),schema_validatio
   }
 })
 
-route.delete('/:id/students/:idStudent',schema_validation(schemaIdsDeleteStudent,'params'),async (req,res,next) => {
+route.delete('/:id/students/:idStudent',
+schema_validation(schemaIdsDeleteStudent,'params'),
+async (req,res,next) => {
   let studentRemoved 
   const { id,idStudent } = req.params
   try 

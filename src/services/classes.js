@@ -16,7 +16,7 @@ export class Classes
 
     if(Object.keys(filters).length)
     {
-     filter =  { name  : new RegExp(filters.name || false)  }
+     filter =  { name  : new RegExp(filters.name || false,'i')  }
     }
 
     classes = await GET_ALL({ 
