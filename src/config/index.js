@@ -2,6 +2,7 @@ require('dotenv').config()
 
 export const config = {
   isDev : process.env.NODE_ENV !== 'production',
+  SECRET_KEY : process.env.SECRET_KEY,
   dev : {
     DB_NAME : process.env.DB_NAME_DEV,
     DB_USER : process.env.DB_USER_DEV,

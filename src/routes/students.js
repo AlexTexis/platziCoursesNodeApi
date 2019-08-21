@@ -3,7 +3,7 @@ const route = Router()
 import { Students } from '../services/students'
 import { schema_validation } from '../middlewares/data_validation'
 import { schemaId,schemaStudent,schemaStudentUpdate } from '../schemas/index'
-
+import { authenticateJwt } from '../middlewares/authenticateJwt'
 
 route.get('/',async (req,res,next) => {
   let students
@@ -42,6 +42,7 @@ async (req,res,next) => {
 })
 
 route.post('/',
+authenticateJwt,
 schema_validation(schemaStudent,'body'),
 async (req,res,next) => {
   let { body } = req
@@ -60,6 +61,7 @@ async (req,res,next) => {
 })
 
 route.put('/:id',
+authenticateJwt,
 schema_validation(schemaId,'params'),
 schema_validation(schemaStudentUpdate,'body'),
 async (req,res,next) => {
@@ -84,6 +86,7 @@ async (req,res,next) => {
 })
 
 route.delete('/:id',
+authenticateJwt,
 schema_validation(schemaId,'params'),
 async (req,res,next) => {
   let studentRemoved 

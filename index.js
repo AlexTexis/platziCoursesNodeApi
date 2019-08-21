@@ -11,6 +11,8 @@ app.use(cors())
 app.use(helmet())
 
 //routes
+import routeSignup from './src/routes/signup'
+import routeSignin from './src/routes/signin'
 import routeAlumns from './src/routes/students'
 import routeCourses from './src/routes/courses'
 import routeClasses from './src/routes/classes'
@@ -19,6 +21,8 @@ app.get('/',(req,res) => res.json({ message : 'welcome to api platzi courses wit
 app.use('/students',routeAlumns)
 app.use('/courses',routeCourses)
 app.use('/classes',routeClasses)
+app.use('/signup',routeSignup)
+app.use('/signin',routeSignin)
 
 
 //errror middlewares

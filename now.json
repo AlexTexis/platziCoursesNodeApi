@@ -23,6 +23,7 @@
     "DB_USER" : "@db-user-platzi-courses-node",
     "DB_PASSWORD" : "@db-password-platzi-courses-node",
     "DB_HOST" : "@db-host-platzi-courses-node",
-    "DB_PORT" : "@db-port-platzi-courses-node"
+    "DB_PORT" : "@db-port-platzi-courses-node",
+    "SECRET_KEY" : "@secret-platzi-courses-node"
   }
 }

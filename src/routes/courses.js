@@ -2,6 +2,9 @@ import { Router  } from 'express'
 const route = Router()
 import { Courses } from '../services/courses'
 import { schema_validation } from '../middlewares/data_validation'
+//middleware auth
+import { authenticateJwt } from '../middlewares/authenticateJwt'
+
 import { 
   schemaId,schemaCourse,
   schemaCourseUpdate,
@@ -45,6 +48,7 @@ async (req,res,next) => {
 })
 
 route.post('/',
+authenticateJwt,
 schema_validation(schemaCourse,'body'),
 async (req,res,next) => {
   let { body } = req
@@ -63,6 +67,7 @@ async (req,res,next) => {
 })
 
 route.put('/:id',
+authenticateJwt,
 schema_validation(schemaId,'params'),
 schema_validation(schemaCourseUpdate,'body'),
 async (req,res,next) => {
@@ -87,6 +92,7 @@ async (req,res,next) => {
 })
 
 route.delete('/:id',
+authenticateJwt,
 schema_validation(schemaId,'params'),
 async (req,res,next) => {
   let courseRemoved
@@ -109,6 +115,7 @@ async (req,res,next) => {
 
 // CLASS ENDPOINTS
 route.post('/:id/class',
+authenticateJwt,
 schema_validation(schemaId,'params'),
 schema_validation(schemaIdCourseClass,'body'),
 async (req,res,next) => {
@@ -133,6 +140,7 @@ async (req,res,next) => {
 })
 
 route.delete('/:id/class/:idClass',
+authenticateJwt,
 schema_validation(schemaIdsDeleteClass,'params'),
 async (req,res,next) => {
   let classRemoved 
@@ -157,6 +165,7 @@ async (req,res,next) => {
 
 // STUDENTS ENDPOINTS
 route.post('/:id/students',
+authenticateJwt,
 schema_validation(schemaId,'params'),
 schema_validation(schemaIdCourseStudent,'body'),
 async (req,res,next) => {
@@ -181,6 +190,7 @@ async (req,res,next) => {
 })
 
 route.delete('/:id/students/:idStudent',
+authenticateJwt,
 schema_validation(schemaIdsDeleteStudent,'params'),
 async (req,res,next) => {
   let studentRemoved 

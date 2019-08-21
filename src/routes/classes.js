@@ -3,6 +3,7 @@ const route = Router()
 import { Classes } from '../services/classes'
 import { schema_validation } from '../middlewares/data_validation'
 import { schemaId,schemaClass } from '../schemas/index'
+import { authenticateJwt } from '../middlewares/authenticateJwt'
 
 route.get('/',async (req,res,next) => {
   let classes
@@ -23,6 +24,7 @@ route.get('/',async (req,res,next) => {
 })
 
 route.post('/',
+authenticateJwt,
 schema_validation(schemaClass),
 async (req,res,next) => {
   let { body } = req
@@ -43,6 +45,7 @@ async (req,res,next) => {
 
 
 route.delete('/:id',
+authenticateJwt,
 schema_validation(schemaId,'params'),
 async (req,res,next) => {
   let classRemoved
