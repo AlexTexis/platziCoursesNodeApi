@@ -487,3 +487,54 @@ Return object class created
 }
 ```
 
+## AUTHENTICATION
+
+**Sgnin**
+
+ > url/signin
+
+   Despues de que haigas creado una cuenta tendrás que añadir el header de Authorization Basica y enviar el username(email) y password en base64 en la solicitud.
+  Ejemplo usando fetch : 
+```
+fetch(url,{
+    method : 'POST',
+    headers : new Headers({
+      'Content-Type' : 'application/json',
+      'Authorization' : `Basic username:password`
+    })
+})
+```
+Una vez iniciado la sesión se te entregara un token de acceso y deberas añadirlo en el header de Authorization Bearer en cada solicitud que incluyan los métodos post,put y delete.
+Ejemplo :
+``` 
+fetch(url,{
+  method : 'POST',
+  headers : new Headers({
+    'Content-Type' : 'application/json',
+    'Authorization' : `Bearer token `
+  })
+```
+
+**Signup**
+
+ > url/signup
+
+Deberas enviar en el cuerpo de la petición : 
+``` 
+fetch(url,{
+  method : 'POST',
+  headers : new Headers({
+    'Content-Type' : 'application/json'
+  },
+ body : JSON.stringify({ email,password })
+)
+```
+Una vez creada tu cuenta se te entregara un token de acceso que ahoras deberas enviar en cada solicitud que use métodos post,delete y put
+
+Ejemplo del token : 
+```
+//El token tiene una expiración de 15m
+{
+token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+}
+```
